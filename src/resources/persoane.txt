@@ -1,0 +1,5 @@
+1,Frincu,George,35,gfrincu@gmail.com,sjdqy3,Doctor,chirurgie,venerologie
+2,Popescu,Andreea,14,popescumaria@gmail.com,sndw4y7,Pacient,dureri abdominale
+3,Dionosie,Ioana,25,ioana45@gmail.com,ahduwye,Doctor,dermatologie,patologii
+4,Denis,Eduard,3,deniseduard@gmail.com,90485cbb,Pacient,febra
+5,Popa,Maria,45,mariapoa55@gmail.com,he346dj,Doctor,neonatologie,prematuri
