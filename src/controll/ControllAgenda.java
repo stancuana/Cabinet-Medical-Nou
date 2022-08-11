@@ -1,16 +1,14 @@
 package controll;
 
 import model.Agenda;
+import model.Liber;
 import model.Programare;
 
-import java.io.File;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class ControllAgenda implements Controller{
 
@@ -97,16 +95,8 @@ public class ControllAgenda implements Controller{
         }while (flag==0);
     }
 
-    public boolean verificareSuprapunereProgramari(Programare programare){
-
-        for(int i=0; i<agenda.size();i++){
-            if(agenda.get(i).getProgramare().compareTo(programare)==1){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        return true;
+    public boolean verificareSuprapunereProgramari(Agenda programare){
+         return  this.agenda.contains(programare);
     }
 
     public String returnStringProgramare(Programare programare){
@@ -192,14 +182,41 @@ public class ControllAgenda implements Controller{
 
     // todo: functie ce primeste o data si returneaza locurile libere din ziua respectiva
 
-    // todo: set duration 30 min
+    public ArrayList<Liber> locuriLibereByDate(int idUse,LocalDate date){
 
-    public LocalDateTime setDuration(LocalDateTime dateInceput){
 
-        LocalDateTime dateSfarsit=dateInceput.plusMinutes(30);
+        ArrayList<Liber> libere= new ArrayList<>();
+        ArrayList<Programare>programares=programareZi(idUse,date);
 
-        return dateSfarsit;
+
+        LocalDateTime dateStart=LocalDateTime.of(date.getYear(),date.getMonth(),date.getDayOfMonth(),9,00);
+
+
+        LocalDateTime sfarsit;
+
+
+        for(int i=0; i<programares.size();i++){
+
+
+            sfarsit=programares.get(i).getDateInceput();
+
+
+            Liber liber= new Liber(dateStart,sfarsit);
+
+            libere.add(liber);
+            dateStart=programares.get(i).getDateSfarsit();
+        }
+
+
+        Liber liber= new Liber(dateStart,LocalDateTime.of(date.getYear(),date.getMonth(),date.getDayOfMonth(),17,00));
+        return libere;
     }
+
+
+
+
+
+
 
 
 }

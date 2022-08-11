@@ -43,4 +43,12 @@ class ControllAgendaTest {
 
     }
 
+    @Test
+    public void locuriLibereZiTest(){
+
+        ControllAgenda controllAgenda=new ControllAgenda();
+
+        ArrayList locuriLibere=controllAgenda.locuriLibereByDate(1,Lo)
+    }
+
 }

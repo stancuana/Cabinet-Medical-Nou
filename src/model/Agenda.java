@@ -8,11 +8,11 @@ public class Agenda  implements Comparable<Agenda>{
     private Programare programare;
 
 
-    public Agenda(int id,int doctorId, int pacientId){
+    public Agenda(int id,int doctorId, int pacientId, Programare programare){
         this.id=id;
         this.doctorId=doctorId;
         this.pacientId=pacientId;
-        this.programare=new Programare("07,08,2022,14,30","07,08,2022,15,30");
+        this.programare=programare;
     }
 
     public Agenda(String atribute){
@@ -69,7 +69,7 @@ public class Agenda  implements Comparable<Agenda>{
 
         Agenda agenda=(Agenda) object;
 
-        return (this.pacientId==this.doctorId && this.programare.equals(agenda.programare));
+        return this.programare.equals(agenda.getProgramare());
     }
 
     @Override

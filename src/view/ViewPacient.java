@@ -2,6 +2,7 @@ package view;
 
 import controll.ControllAgenda;
 import controll.ControllPersoana;
+import model.Agenda;
 import model.Programare;
 
 import java.time.LocalDateTime;
@@ -16,14 +17,13 @@ public class ViewPacient {
 
     public ViewPacient() {
         controllPersoana = new ControllPersoana();
+        controllAgenda=new ControllAgenda();
         scanner = new Scanner(System.in);
     }
 
     public void meniu() {
         System.out.println("Pentru a crea o noua programare apasati tasta 1");
-        System.out.println("Pentru a vizualiza o programare apasati tasta 2");
-        System.out.println("Pentru a modifica o programare apasati tasta 3");
-        System.out.println("Pentru a anula o programare apasati tasta 4");
+        System.out.println("Pentru a vizualiza locurile disponibile la data aleasa apasati tasta 2");
     }
 
     public void play() {
@@ -39,6 +39,7 @@ public class ViewPacient {
                 case 1:
                     programareNoua();
                     break;
+
                 case 2:
                     break;
                 case 3:
@@ -54,6 +55,8 @@ public class ViewPacient {
 
     public void programareNoua(){
 
+        System.out.println("Introduceti numele dumneavoastra: ");
+        String nume=scanner.nextLine();
 
         System.out.println("Introduceti numele medicului la care doriti sa realizati programarea: ");
         String numeDoctor=scanner.nextLine();
@@ -61,23 +64,24 @@ public class ViewPacient {
         System.out.println("Introduceti data si ora in format dd,mm,yyyy,hh,mm");
 
         String dateInceput=scanner.nextLine();
-
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd,mm,yyyy,hh,mm");
-        LocalDateTime dateTime=LocalDateTime.parse(dateInceput,formatter); // am convertit dateInceput din String in LocalDateTime
-
-        LocalDateTime dateSfarsit=controllAgenda.setDuration(dateTime); //am creat datele de Sfarsit (LocalDateTime)
+        Programare programare = new Programare(dateInceput,30);
+        Agenda agenda= new Agenda(controllAgenda.nextAvailableId(),controllPersoana.returnIdPersoanaByName(numeDoctor),controllPersoana.returnIdPersoanaByName(nume),programare);
 
 
-        Programare programare=new Programare(dateInceput,dateSfarsit.format(formatter));
-
-        if(controllAgenda.verificareSuprapunereProgramari(programare)==true){
-            controllAgenda.add(programare);
-            System.out.println("Programarea s-a realizat cu succes");
+        if(controllAgenda.verificareSuprapunereProgramari(agenda)==false){
+            controllAgenda.add(agenda);
+            System.out.println("Programarea s-a realizat cu succes!");
         }else{
-            System.out.println("Nu se poate realiza programarea in intervalul de timp selectat");
+            System.out.println("Nu se poate efectua o programare in intervalul de timp selectat");
         }
     }
 
+    public void afisareLocuriLibereZi(){
 
+        System.out.println("Introduceti numele medicului ale carui programari doriti sa vizulizati: ");
+        String numeMedic=scanner.nextLine();
+
+        System.out.println("Introduceti data pentru care doriti sa vizualizati locurile libere: ");
+    }
 
 }

@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Programare implements Comparable<Programare>{
-    private LocalDateTime dateInceput;
-    private LocalDateTime dateSfarsit;
+    protected LocalDateTime dateInceput;
+    protected LocalDateTime dateSfarsit;
 
     //"dd,mm,yyyy,hh,mm"
 
@@ -27,6 +27,22 @@ public class Programare implements Comparable<Programare>{
         this.dateSfarsit=LocalDateTime.of(yys,mms,dds,hhs,mins);
     }
 
+
+    public Programare(String dateInceput,int durata) {
+        int ddi = Integer.parseInt(dateInceput.split(",")[0]);
+        int mmi = Integer.parseInt(dateInceput.split(",")[1]);
+        int yyi = Integer.parseInt(dateInceput.split(",")[2]);
+        int hhi = Integer.parseInt(dateInceput.split(",")[3]);
+        int mini = Integer.parseInt(dateInceput.split(",")[4]);
+        this.dateInceput = LocalDateTime.of(yyi, mmi, ddi, hhi, mini);
+        this.dateSfarsit = LocalDateTime.of(yyi, mmi, ddi, hhi, mini + durata);
+
+    }
+
+    public Programare(LocalDateTime dateInceput, LocalDateTime dateSfarsit) {
+        this.dateInceput = dateInceput;
+        this.dateSfarsit = dateSfarsit;
+    }
 
     public Duration getDurata(){
         return Duration.between(dateInceput,dateSfarsit);
@@ -69,7 +85,6 @@ public class Programare implements Comparable<Programare>{
         if(this.dateInceput.compareTo(programare.dateSfarsit)>0 &&this.dateSfarsit.compareTo(programare.dateSfarsit)>0){
             return false;
         }
-
         return  true;
     }
 
@@ -84,6 +99,10 @@ public class Programare implements Comparable<Programare>{
         return 0;
     }
 
+    // todo: set duration 30 min
+    public void setDuration(int minute){
 
+        dateSfarsit=dateInceput.plusMinutes(minute);
+    }
 
 }

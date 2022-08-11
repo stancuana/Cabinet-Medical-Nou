@@ -67,8 +67,16 @@ public class ControllPersoana implements Controller{
         return 4;
     }
 
+    public int returnIdPersoanaByName(String nume){
 
+        for(int i=0; i<persoane.size();i++){
+
+            if(this.persoane.get(i).getNume().equals(nume)){
+                return persoane.get(i).getId();
+            }
+        }
+        return 0;
+    }
 }
 
 
-// save
