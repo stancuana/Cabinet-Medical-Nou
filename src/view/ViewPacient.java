@@ -78,7 +78,7 @@ public class ViewPacient {
 
     public void afisareLocuriLibereZi(){
 
-        System.out.println("Introduceti numele medicului ale carui programari doriti sa vizulizati: ");
+        System.out.println("Introduceti numele medicului ale carui programari doriti sa le vizulizati: ");
         String numeMedic=scanner.nextLine();
 
         System.out.println("Introduceti data pentru care doriti sa vizualizati locurile libere: ");

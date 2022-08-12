@@ -48,7 +48,12 @@ class ControllAgendaTest {
 
         ControllAgenda controllAgenda=new ControllAgenda();
 
-        ArrayList locuriLibere=controllAgenda.locuriLibereByDate(1,Lo)
+        ArrayList locuriLibere=controllAgenda.locuriLibereByDate(1,LocalDate.of(2022,8,1));
+
+        for(int i=0;i<locuriLibere.size();i++){
+
+            System.out.println(locuriLibere.get(i).toString());
+        }
     }
 
 }
