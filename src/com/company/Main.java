@@ -1,12 +1,14 @@
 package com.company;
 
+import view.ViewLogin;
 import view.ViewPacient;
 
 public class Main {
 
     public static void main(String[] args) {
-        ViewPacient viewPacient=new ViewPacient();
+        ViewLogin viewLogin=new ViewLogin();
 
-        viewPacient.play();
+        viewLogin.play();
+
     }
 }

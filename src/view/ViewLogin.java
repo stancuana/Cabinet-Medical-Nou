@@ -27,9 +27,6 @@ public class ViewLogin {
         System.out.println("Daca sunteti cadru medical apasati tasta 2");
         System.out.println("Daca sunteti secretara apasati tasta 3");
     }
-
-
-
     public void play(){
 
         boolean running = true;
@@ -41,17 +38,45 @@ public class ViewLogin {
             int alegere = Integer.parseInt(scanner.nextLine());
 
             switch (alegere) {
-                case 1:
+                case 1:alegereLogare();
+                    if(scanner.nextLine().equals(1)){
+
+                        logarePersoana();
+                        viewPacient.play();
+                    }else{
+                        creeareCont();
+                        viewPacient.play();
+                    }
                     break;
-                case 2:
+                case 2:alegereLogare();
+                    if(scanner.nextLine().equals(1)){
+                        logarePersoana();
+                        viewSecretara.play();
+                    }else{
+                        creeareCont();
+                        viewSecretara.play();
+                    }
                     break;
-                case 3:
+                case 3:alegereLogare();
+                    if(scanner.nextLine().equals(1)){
+                        logarePersoana();
+                        viewDoctor.play();
+                    }else{
+                        creeareCont();
+                        viewDoctor.play();
+                    }
                     break;
 
                 default:
                     meniu();
             }
         }
+    }
+
+    public void alegereLogare(){
+
+        System.out.println("Pentru a va loga apasati tasta 1");
+        System.out.println("Pentru a va creea un cont apasati tasta 2");
     }
 
     public void logarePersoana(){
@@ -72,8 +97,9 @@ public class ViewLogin {
         }
     }
 
-    public void logarePersoana2(){
+    public void creeareCont(){
 
-        if()
     }
+
+
 }
