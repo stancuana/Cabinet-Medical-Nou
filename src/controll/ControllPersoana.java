@@ -110,6 +110,17 @@ public class ControllPersoana implements Controller{
         }
         return 0;
     }
+
+    public Persoana returnPersoanaByEmail(String email,String password){
+
+        for(int i=0; i<persoane.size();i++){
+
+            if(persoane.get(i).getEmail().equals(email) && persoane.get(i).getPassword().equals(password)){
+                return persoane.get(i);
+            }
+        }
+        return null;
+    }
 }
 
 
